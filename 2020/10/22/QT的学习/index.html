@@ -8,17 +8,21 @@
   <link rel="dns-prefetch" href="http://example.com/child">
   <title>QT的学习 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="##第一天1 创建第一个qt程序1.1点击创建项目后 选择项目路径以及 给项目起名称1.2 名称 不能有中文 不能有空格1.3 路径 不能有中文路径1.4 默认创建有窗口类 mywidget 基类有三种选择 Qwidget Qmainwindow QDialog1.5 main函数1.5.1   QApplication a应用程序对象 有且仅有一个2.5.2   MainWindow w; 实例">
+  <meta name="description" content="##第一天1 创建第一个qt程序1.1点击创建项目后 选择项目路径以及 给项目起名称1.2 名称 不能有中文 不能有空格1.3 路径 不能有中文路径1.4 默认创建有窗口类 mywidget 基类有三种选择 Qwidget Qmainwindow QDialog1.5 main函数1.5.1   QApplication a应用程序对象 有且仅有一个1.5.2   MainWindow w; 实例">
 <meta property="og:type" content="article">
 <meta property="og:title" content="QT的学习">
 <meta property="og:url" content="http://example.com/child/2020/10/22/QT%E7%9A%84%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="##第一天1 创建第一个qt程序1.1点击创建项目后 选择项目路径以及 给项目起名称1.2 名称 不能有中文 不能有空格1.3 路径 不能有中文路径1.4 默认创建有窗口类 mywidget 基类有三种选择 Qwidget Qmainwindow QDialog1.5 main函数1.5.1   QApplication a应用程序对象 有且仅有一个2.5.2   MainWindow w; 实例">
+<meta property="og:description" content="##第一天1 创建第一个qt程序1.1点击创建项目后 选择项目路径以及 给项目起名称1.2 名称 不能有中文 不能有空格1.3 路径 不能有中文路径1.4 默认创建有窗口类 mywidget 基类有三种选择 Qwidget Qmainwindow QDialog1.5 main函数1.5.1   QApplication a应用程序对象 有且仅有一个1.5.2   MainWindow w; 实例">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/child/2020/10/22/QT%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%8F%8A%E5%91%BD%E5%90%8D%E6%96%B9%E5%BC%8F.PNG">
+<meta property="og:image" content="http://example.com/child/2020/10/22/QT%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%AF%B9%E8%B1%A1%E6%A0%91.PNG">
+<meta property="og:image" content="http://example.com/child/2020/10/22/QT%E7%9A%84%E5%AD%A6%E4%B9%A0/Qt%E4%B8%AD%E7%9A%84%E5%9D%90%E6%A0%87.PNG">
 <meta property="article:published_time" content="2020-10-22T06:31:23.000Z">
-<meta property="article:modified_time" content="2020-10-22T13:01:11.744Z">
+<meta property="article:modified_time" content="2020-10-24T08:32:13.515Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/child/2020/10/22/QT%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%8F%8A%E5%91%BD%E5%90%8D%E6%96%B9%E5%BC%8F.PNG">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -182,7 +186,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##第一天<br>1 创建第一个qt程序<br>1.1点击创建项目后 选择项目路径以及 给项目起名称<br>1.2 名称 不能有中文 不能有空格<br>1.3 路径 不能有中文路径<br>1.4 默认创建有窗口类 mywidget 基类有三种选择 Qwidget Qmainwindow QDialog<br>1.5 main函数<br>1.5.1   QApplication a应用程序对象 有且仅有一个<br>2.5.2   MainWindow w; 实例化窗口对象<br>2.5.3   w.show();调用show函数 显示窗口<br>2.5.4   return a.exec(); 让应用程序对象（a）进入消息循环 让代码阻塞到这行</p>
+        <p>##第一天<br>1 创建第一个qt程序<br>1.1点击创建项目后 选择项目路径以及 给项目起名称<br>1.2 名称 不能有中文 不能有空格<br>1.3 路径 不能有中文路径<br>1.4 默认创建有窗口类 mywidget 基类有三种选择 Qwidget Qmainwindow QDialog<br>1.5 main函数<br>1.5.1   QApplication a应用程序对象 有且仅有一个<br>1.5.2   MainWindow w; 实例化窗口对象<br>1.5.3   w.show();调用show函数 显示窗口<br>1.5.4   return a.exec(); 让应用程序对象（a）进入消息循环 让代码阻塞到这行</p>
+<p>2 按钮控件常用的API  中文编码UTF-8  </p>
+<p>  2.1 创建QPushButton * btn2 = new QPushButton<br>  2.2 设置父亲  btn-&gt;setParent(this);<br>  2.3 设置文本  btn-&gt;setText(“第一个按钮”);<br>  2.4 设置位置  move(宽，高);<br>  2.5 重新指定窗口大小 resize<br>  2.6 设置窗口标题 setWindowTitle(“第一个窗口”);<br>  2.7 设置窗口固定的大小 setFixedSize(800,800);<br>  2.8 快捷键及命名方式  </p>
+<p><img src="/child/2020/10/22/QT%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%8F%8A%E5%91%BD%E5%90%8D%E6%96%B9%E5%BC%8F.PNG" alt="快捷键及命名方式"></p>
+<p>3 对象树<br>3.1  当创建的对象在堆区时候，如果指定的父亲是QObject派生下来的类或者QObject子类派生下来的类，可以不用管理释放操作，将对象放到对象树中。<br>3.2  一定程度上简化了内存的机制<br><img src="/child/2020/10/22/QT%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%AF%B9%E8%B1%A1%E6%A0%91.PNG" alt="对象树"></p>
+<p>4 Qt中的坐标系<br>4.1  左上角为0 ， 0点<br>4.2  x以右方向为正方向<br>4.3  y以下方向为正方向  </p>
+<p><img src="/child/2020/10/22/QT%E7%9A%84%E5%AD%A6%E4%B9%A0/Qt%E4%B8%AD%E7%9A%84%E5%9D%90%E6%A0%87.PNG" alt="Qt中的坐标"></p>
 
       
 
