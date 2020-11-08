@@ -196,7 +196,12 @@
 <p>9   Qt4版本写法<br>9.1  connect（信号的发送者，发送的信号SIGNAL(信号)，信号的接收者，槽函数SLOT(槽函数)）<br>9.2  优点  参数直观<br>9.3  缺点  编译器不会检测参数类型</p>
 <p>10 lambda 表达式  最常用 [=]  ( ) {  {}}<br>10.1  [] 标识符 匿名函数<br>10.1.1  = 值传递<br>10.1.2  &amp; 引用传递<br>10.2  （）参数<br>10.3  {} 实现体<br>10.4  mutable  修饰 值传递变量， 可以修改拷贝出的数据，改变不了本体<br>10.5  返回值 [ ] ( )-&gt;int{}</p>
 <h2 id="第二天"><a href="#第二天" class="headerlink" title="第二天"></a>第二天</h2><p>1 QMainWindow<br> 1.1 菜单栏 最多有一个<br> 1.1.1 QMenuBar *bar = MenuBar();<br> 1.1.2 setMenuBar(bar); //添加到窗口中<br> 1.1.3 QMenu * fileMenu = bar-&gt;addMenubar(“文件”)；创建菜单<br> 1.1.4 QAction *newAction = fileMenu-&gt;addaction(“新建”) 创建菜单项<br> 1.1.5 fileMenu-&gt;addSeparator(); 添加分割线  </p>
-<p>1.2 工具栏<br>1.2.1 QToolBar *toolbar = new QToolBar(this);<br>1.2.2 addToolBar(默认停靠区域，toolBar);Qt::LeftToolBarArea<br>1.2.3 设置 后期停靠区域 toolBar-&gt;setAllowedAreas(Qt::LeftToolBarArea|Qt::RightToolBarArea);，设置浮动  toolBar-&gt;setFloatable(false);，<br>设置移动 toolBar-&gt;setMovable(false);<br>1.2.4 添加菜单项 或者添加 小控件</p>
+<p>1.2 工具栏<br>1.2.1 QToolBar *toolbar = new QToolBar(this);<br>1.2.2 addToolBar(默认停靠区域，toolBar);Qt::LeftToolBarArea<br>1.2.3 设置 后期停靠区域 toolBar-&gt;setAllowedAreas(Qt::LeftToolBarArea|Qt::RightToolBarArea);，设置浮动  toolBar-&gt;setFloatable(false);，<br>设置移动 toolBar-&gt;setMovable(false);<br>1.2.4 添加菜单项 或者添加 小控件    </p>
+<p>1.3 状态栏<br>1.3.1  QStatusBar *stBar= statusBar();<br>1.3.2 设置到窗口中  setStatusBar(stBar);<br>1.3.3 放左侧的信息 stBar-&gt;addWidget(label); 放右侧的信息 stBar-&gt;addPermanentWidget(label2);  </p>
+<p>1.4 铆接部件 浮动窗口   可以多个<br>1.4.1 QDockWidget<br>1.4.2 addDockWidget (默认区域停靠区域，浮动窗口指针)<br>1.4.3 设置后期停靠区域   docWidget-&gt;setAllowedAreas(Qt::TopDockWidgetArea|Qt::BottomDockWidgetArea);（上或下）  </p>
+<p>1.5 设置核心部件 只能有一个<br>1.5.1   setCentralWidget(edit);  </p>
+<p>2 资源文件<br>2.1 将图片文件 拷贝到项目位置下<br>2.2 右键项目-》添加新文件-》添加新文件 Qt-》Qt resource File -&gt; 给资源文件取名 res 生成 res.qrc<br>2.3 点击 open in editor 编辑资源<br>2.4 添加前缀 添加文件<br>2.5 使用 “:+前缀名+文件名”<br><img src="/child/2020/10/22/QT%E7%9A%84%E5%AD%A6%E4%B9%A0/%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6.png" alt="资源文件">  </p>
+<p>3 对话框<br>3.1 分类<br>3.1.1 模态对话框   不可以对其他窗口进行操作<br>3.1.1.1   QDialog dlg(this);<br>3.1.1.2  dlg.exec();<br>3.1.2 非模态对话框 可以对其他窗口进行操作<br>3.1.2.1 防止一闪而过  创建在堆区<br>3.1.2.2  QDialog *dlg2=new QDialog(this);   dlg2-&gt;show(); dlg2-&gt;setAttribute(Qt::WA_DeleteOnClose);//55号 属性（防止内存泄露）</p>
 
       
 
@@ -412,6 +417,70 @@
 
 
   
+    <article id="post-英语" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/21/%E8%8B%B1%E8%AF%AD/">英语单词</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/21/%E8%8B%B1%E8%AF%AD/" class="archive-article-date">
+  	<time datetime="2020-09-21T05:58:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="第一天"><a href="#第一天" class="headerlink" title="第一天"></a>第一天</h2><p>involve v.使参加 包含 牵涉<br>issue n. 议题 争论的问题<br>require v.需要 要求 规定<br>process n.进程 过程 工序<br>        v.加工 处理<br>raise n.筹集 征集 引起 养育 饲养 提出<br>v.提升 增加<br>rate n.率 速度 进度 价格 费用<br>access n.接触的机会 进入 入口<br>v.存取 （计算机）<br>accout n.叙述 账户 说明<br>v.说明<br>cliam n/v.声称 断言 索赔 索取<br>decline v/n.下降 减少 衰退<br>v.婉拒<br>promote v.促进 发扬 提升 提拔 宣传<br>situation n.形势 状况 环境特点<br>credit n.赞扬 称赞 贷款<br>v.信任<br>demand n.要求 需求<br>miantain v.维持 保持 赡养 供养 坚持认为<br>opportunity n.机会 时机<br>range  n.幅度 范围  距离<br>aware adj.意识到的  知道的<br>concern v.涉及 使关心<br>n.担心<br>contain v. 包含 容纳 控制 抑制<br>contribute v.贡献出 捐赠 投稿<br>ensure v.保证 担保 确保  </p>
+<h2 id="第二天"><a href="#第二天" class="headerlink" title="第二天"></a>第二天</h2><p>feature n.相貌 特点 特色<br>ignore  v.不顾 忽视<br>impact  v.撞击  冲撞<br>inform  n. 通知<br>major  adj.主要的<br>particularly adv. 特别的<br>associate  v.联想 交往 联系<br>case n.情况 事实<br>damage v.毁坏<br>injure v.使受伤<br>occasion n.场合 时机<br>v.引起<br>particular adj.特别的  </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/21/%E8%8B%B1%E8%AF%AD/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-我的第一篇博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -463,70 +532,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/09/21/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-英语" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/21/%E8%8B%B1%E8%AF%AD/">英语单词</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/21/%E8%8B%B1%E8%AF%AD/" class="archive-article-date">
-  	<time datetime="2020-09-21T05:58:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="第一天"><a href="#第一天" class="headerlink" title="第一天"></a>第一天</h2><p>involve v.使参加 包含 牵涉<br>issue n. 议题 争论的问题<br>require v.需要 要求 规定<br>process n.进程 过程 工序<br>        v.加工 处理<br>raise n.筹集 征集 引起 养育 饲养 提出<br>v.提升 增加<br>rate n.率 速度 进度 价格 费用<br>access n.接触的机会 进入 入口<br>v.存取 （计算机）<br>accout n.叙述 账户 说明<br>v.说明<br>cliam n/v.声称 断言 索赔 索取<br>decline v/n.下降 减少 衰退<br>v.婉拒<br>promote v.促进 发扬 提升 提拔 宣传<br>situation n.形势 状况 环境特点<br>credit n.赞扬 称赞 贷款<br>v.信任<br>demand n.要求 需求<br>miantain v.维持 保持 赡养 供养 坚持认为<br>opportunity n.机会 时机<br>range  n.幅度 范围  距离<br>aware adj.意识到的  知道的<br>concern v.涉及 使关心<br>n.担心<br>contain v. 包含 容纳 控制 抑制<br>contribute v.贡献出 捐赠 投稿<br>ensure v.保证 担保 确保  </p>
-<h2 id="第二天"><a href="#第二天" class="headerlink" title="第二天"></a>第二天</h2><p>feature n.相貌 特点 特色<br>ignore  v.不顾 忽视<br>impact  v.撞击  冲撞<br>inform  n. 通知<br>major  adj.主要的<br>particularly adv. 特别的<br>associate  v.联想 交往 联系<br>case n.情况 事实<br>damage v.毁坏<br>injure v.使受伤<br>occasion n.场合 时机<br>v.引起<br>particular adj.特别的  </p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/21/%E8%8B%B1%E8%AF%AD/">展开全文 >></a>
         </p>
       
 
