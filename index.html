@@ -160,6 +160,123 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Java语法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/15/Java%E8%AF%AD%E6%B3%95/">Java语法</a>
+    </h1>
+  
+
+        
+        <a href="/2021/01/15/Java%E8%AF%AD%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2021-01-15T10:50:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Scanner-的用法"><a href="#Scanner-的用法" class="headerlink" title="Scanner 的用法"></a>Scanner 的用法</h2><pre><code>  public class Demo04 &#123;
+public static void main(String[] args) &#123;
+    Scanner scanner = new Scanner(System.in);
+    //从键盘接收数据
+    int i = 0;
+    float f = 0.0f;
+    System.out.println(&quot;请输入整数： &quot;); 
+      //行数 scanner.hasnextline()
+    if (scanner.hasNextInt())&#123;
+        i = scanner.nextInt();
+        System.out.println(&quot;整数数据为 &quot;+i);
+
+    &#125;else&#123;
+        System.out.println(&quot;输入的不是整数&quot;);
+    &#125;
+    if (scanner.hasNextFloat())&#123;
+        f = scanner.nextFloat();
+        System.out.println(&quot;小数数据为 &quot;+f);
+
+    &#125;else&#123;
+        System.out.println(&quot;输入的不是小数&quot;);
+    &#125;
+
+    scanner.close();
+&#125;</code></pre>
+<p>}</p>
+<h2 id="选择结构"><a href="#选择结构" class="headerlink" title="选择结构"></a>选择结构</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"></span><br><span class="line">       System.out.println(<span class="string">&quot;请输入内容：&quot;</span>);</span><br><span class="line">       String s = scanner.nextLine();</span><br><span class="line">       <span class="comment">//equals 判断字符串是否相等  少用== 去判断字符串</span></span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span>(s.equals(<span class="string">&quot;Hello&quot;</span>))&#123;</span><br><span class="line">           System.out.println(s);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       System.out.println(<span class="string">&quot;end&quot;</span>);</span><br><span class="line"></span><br><span class="line">       scanner.close();</span><br></pre></td></tr></table></figure>
+<h2 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h2><p>从JKD7 开始 支持string作对比<br>反编译 java—-class（字节码文件）—-反编译（IEDA）</p>
+<h2 id="while-与do-while"><a href="#while-与do-while" class="headerlink" title="while 与do while"></a>while 与do while</h2><p>do while 先执行后判断 while 则相反<br>do while 会先执行一下 do</p>
+<p>换行的区别</p>
+<p>System.out.println();<br>           System.out.print(“\n”);  </p>
+<h2 id="增强for循环"><a href="#增强for循环" class="headerlink" title="增强for循环"></a>增强for循环</h2><p>JDk5 新引进的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">int</span>[] numbers = &#123;<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>,<span class="number">50</span>&#125;;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;</span><br><span class="line"></span><br><span class="line">          System.out.println(numbers[i]);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">       <span class="comment">//遍历数组元素</span></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> x : numbers)&#123;</span><br><span class="line">          System.out.println(x);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="与goto类似的-outer："><a href="#与goto类似的-outer：" class="headerlink" title="与goto类似的 outer："></a>与goto类似的 outer：</h2><p>outer:  continue outer</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LableDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//打印101-105之间所有的质数</span></span><br><span class="line">        <span class="comment">//质数是在大于1的自然数中，除了1和他本身以外不在有其他的因数的自然数</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">       outer: <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">101</span>;i &lt; <span class="number">150</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">2</span>; j&lt;i/<span class="number">2</span>;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(i%j==<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">continue</span> outer;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">           System.out.println(i+<span class="string">&quot;&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="java方法"><a href="#java方法" class="headerlink" title="java方法"></a>java方法</h2><ol>
+<li><p>跟函数基本一致 在定义时要加 static 关键字</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = add(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">        System.out.println(sum);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//加法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span>  a+b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法的重载  </p>
+<p>. 规则  </p>
+<p> .方法名必须相同<br> .参数列表必须不同  （个数，类型，排列）<br> .方法的返回值可以相同 也可以不同<br> .仅仅返回类型不同不足以成为方法的重载   </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//加法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span>  a+b;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">add</span><span class="params">(<span class="keyword">double</span> a,<span class="keyword">double</span> b)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span>  a+b;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="命令行传参"><a href="#命令行传参" class="headerlink" title="命令行传参"></a>命令行传参</h2><p>跟C 相似 给main方法传参 arg[0] arg[1] arg[2]、</p>
+<h2 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a>可变参数</h2><ol>
+<li>在方法的声明中 在指定参数类型后面加一个省略号 …</li>
+<li>一个方法中只能指定一个可变参数， 它必须是方法的最后一个参数，任何普通的参数都必须放在它之前声明  </li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo04</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Demo04 demo04 = <span class="keyword">new</span> Demo04();<span class="comment">//无static的调用方法</span></span><br><span class="line">        demo04.test(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>);<span class="comment">//本质是数组</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span>... i)</span></span>&#123;</span><br><span class="line">        System.out.println(i[<span class="number">0</span>]);</span><br><span class="line">        System.out.println(i[<span class="number">1</span>]);</span><br><span class="line">        System.out.println(i[<span class="number">2</span>]);</span><br><span class="line">        System.out.println(i[<span class="number">3</span>]);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo06</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(f(<span class="number">5</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">f</span> <span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> n*f(n-<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayDemo01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] nums;<span class="comment">//1.声明一个数组</span></span><br><span class="line">        nums = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];<span class="comment">//2.创建一个数组</span></span><br><span class="line">        <span class="comment">//3.给数组元素赋值</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            nums[i] = i+<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//计算所有元素的和</span></span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">10</span>; j++) &#123;</span><br><span class="line">            sum+=nums[j];</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(sum);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/01/15/Java%E8%AF%AD%E6%B3%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Java基础语法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -206,7 +323,8 @@
 <ol start="9">
 <li><p>包机制<br>.包的本质文件夹<br>. 一般用公司域名倒置最为包名  com.baidu.www<br>. package com.dong.base;<br>. import com.dong.base.HelloWorld; 导入包下的类</p>
 </li>
-<li></li>
+<li><p>JavaDoc<br>生成doc文档 可以查看文档注释</p>
+</li>
 </ol>
 
       
@@ -2119,86 +2237,6 @@ int main(void)
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/10/22/%E4%BF%9D%E5%AD%98%E7%9A%84%E5%8F%A5%E5%AD%90/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-我的第一篇博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/21/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">我的第一篇博客</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/21/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" class="archive-article-date">
-  	<time datetime="2020-09-21T05:58:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="把hexo部署到github上访问时出现拒绝访问我居然忘记翻墙？"><a href="#把hexo部署到github上访问时出现拒绝访问我居然忘记翻墙？" class="headerlink" title="把hexo部署到github上访问时出现拒绝访问我居然忘记翻墙？"></a>把hexo部署到github上访问时出现拒绝访问我居然忘记翻墙？</h2><p><img src="/child/2020/09/21/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/file1.png" alt="xxx"></p>
-<h3 id="就是这个样子"><a href="#就是这个样子" class="headerlink" title="就是这个样子"></a>就是这个样子</h3><p>让我搞了好多天<br>其实最开始我就把做出来了<br> 就是因为忘了翻墙<br> 然后不断删除重来 删除重来 删除重来<br>  就像这个样子 !</p>
-<hr>
-<p><img src="/child/2020/09/21/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/file3.png" alt="File3"><br><img src="/child/2020/09/21/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/file3.png" alt="File3"></p>
-<blockquote>
-<p>总共用了400多行</p>
-<blockquote>
-<p>我敢肯定其中300多行都是无用功</p>
-<blockquote>
-<p>啊 好气啊！！！<br>最开始的时候根本不知道问题出在哪里</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<h3 id="描述问题"><a href="#描述问题" class="headerlink" title="描述问题"></a>描述问题</h3><p> 就知道我能成功推到仓库里 但就是访问不了<br> 当时干了又建 干了又建<br>大概用了 4 5天吧 好急人哦！<br> 中途还远程了一个up 当时也没发现翻墙这个问题！！！<br> 到目前才知道 用hexo部署到github上 根本不难 找到hexo的文档 就可以<br> 我也是马后炮 哈哈哈 </p>
-<h3 id="其实我照着羊哥的教程一步一步做的"><a href="#其实我照着羊哥的教程一步一步做的" class="headerlink" title="其实我照着羊哥的教程一步一步做的"></a>其实我照着羊哥的教程一步一步做的</h3><p>过程很详细<br>虽然他的是MAC 我的是win<br>但是遇到问题时<br>弹幕会帮助你的<br>就比如改写_config时<br>他用的vim<br>  我用的记事本和VS操作的但效果是一样的  </p>
-<p> <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Yb411a7ty">这里是羊哥的教程地址</a>  </p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Yb411a7ty">https://www.bilibili.com/video/BV1Yb411a7ty</a><br><img src="/child/2020/09/21/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/22.jpg" alt="22"></p>
-<hr>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/21/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">展开全文 >></a>
         </p>
       
 
