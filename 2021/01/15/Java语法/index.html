@@ -8,17 +8,20 @@
   <link rel="dns-prefetch" href="http://example.com/child">
   <title>Java语法 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Scanner 的用法  public class Demo04 &amp;#123; public static void main(String[] args) &amp;#123;     Scanner scanner &#x3D; new Scanner(System.in);     &#x2F;&#x2F;从键盘接收数据     int i &#x3D; 0;     float f &#x3D; 0.0f;     System.out.prin">
+  <meta name="description" content="Scanner 的用法  public class Demo04 &amp;#123; public static void main(String[] args) &amp;#123;     Scanner scanner &#x3D; new Scanner(System.in);     &#x2F;&#x2F;从键盘接收数据     int i &#x3D; 0;     float f &#x3D; 0.0f;     System.out.pri">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java语法">
 <meta property="og:url" content="http://example.com/child/2021/01/15/Java%E8%AF%AD%E6%B3%95/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Scanner 的用法  public class Demo04 &amp;#123; public static void main(String[] args) &amp;#123;     Scanner scanner &#x3D; new Scanner(System.in);     &#x2F;&#x2F;从键盘接收数据     int i &#x3D; 0;     float f &#x3D; 0.0f;     System.out.prin">
+<meta property="og:description" content="Scanner 的用法  public class Demo04 &amp;#123; public static void main(String[] args) &amp;#123;     Scanner scanner &#x3D; new Scanner(System.in);     &#x2F;&#x2F;从键盘接收数据     int i &#x3D; 0;     float f &#x3D; 0.0f;     System.out.pri">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/child/2021/01/15/Java%E8%AF%AD%E6%B3%95/img/77.png">
+<meta property="og:image" content="http://example.com/child/2021/01/15/Java%E8%AF%AD%E6%B3%95/%E5%A0%86%E6%A0%88.png">
 <meta property="article:published_time" content="2021-01-15T10:50:17.000Z">
-<meta property="article:modified_time" content="2021-01-16T09:39:06.489Z">
+<meta property="article:modified_time" content="2021-01-25T14:35:04.572Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/child/2021/01/15/Java%E8%AF%AD%E6%B3%95/img/77.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -46,11 +49,11 @@
 <div class="overlay" style="background: #4d4d4d"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
-		<a href="/" class="profilepic">
+		<a href="" class="profilepic">
 			<img src="/assets/img/77.png" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/"></a></h1>
+		  <h1 class="header-author"><a href=""></a></h1>
 		</hgroup>
 		
 
@@ -182,7 +185,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Scanner-的用法"><a href="#Scanner-的用法" class="headerlink" title="Scanner 的用法"></a>Scanner 的用法</h2><pre><code>  public class Demo04 &#123;
+        <p><img src="/child/2021/01/15/Java%E8%AF%AD%E6%B3%95/img/77.png"></p>
+<h2 id="Scanner-的用法"><a href="#Scanner-的用法" class="headerlink" title="Scanner 的用法"></a>Scanner 的用法</h2><pre><code>  public class Demo04 &#123;
 public static void main(String[] args) &#123;
     Scanner scanner = new Scanner(System.in);
     //从键盘接收数据
@@ -237,7 +241,140 @@ public static void main(String[] args) &#123;
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo04</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Demo04 demo04 = <span class="keyword">new</span> Demo04();<span class="comment">//无static的调用方法</span></span><br><span class="line">        demo04.test(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>);<span class="comment">//本质是数组</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span>... i)</span></span>&#123;</span><br><span class="line">        System.out.println(i[<span class="number">0</span>]);</span><br><span class="line">        System.out.println(i[<span class="number">1</span>]);</span><br><span class="line">        System.out.println(i[<span class="number">2</span>]);</span><br><span class="line">        System.out.println(i[<span class="number">3</span>]);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo06</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(f(<span class="number">5</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">f</span> <span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> n*f(n-<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayDemo01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] nums;<span class="comment">//1.声明一个数组</span></span><br><span class="line">        nums = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];<span class="comment">//2.创建一个数组</span></span><br><span class="line">        <span class="comment">//3.给数组元素赋值</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            nums[i] = i+<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//计算所有元素的和</span></span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">10</span>; j++) &#123;</span><br><span class="line">            sum+=nums[j];</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(sum);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><ol>
+<li><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayDemo01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] nums;<span class="comment">//1.声明一个数组</span></span><br><span class="line">        nums = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];<span class="comment">//2.创建一个数组</span></span><br><span class="line">        <span class="comment">//3.给数组元素赋值</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            nums[i] = i+<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//计算所有元素的和</span></span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">10</span>; j++) &#123;</span><br><span class="line">            sum+=nums[j];</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(sum);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>Array类的一些用法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.dong.array;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Array;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayDemo06</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] a = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">48</span>,<span class="number">5</span>,<span class="number">878</span>,<span class="number">2</span>,<span class="number">74</span>,<span class="number">8</span>&#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//System.out.println(a);//[I@4554617c</span></span><br><span class="line">        <span class="comment">//打印数组</span></span><br><span class="line">        System.out.println(Arrays.toString(a));</span><br><span class="line">        Arrays.sort(a);<span class="comment">//排序</span></span><br><span class="line"></span><br><span class="line">        System.out.println(Arrays.toString(a));</span><br><span class="line"></span><br><span class="line">        Arrays.fill(a,<span class="number">22</span>);<span class="comment">//填充</span></span><br><span class="line">        System.out.println(Arrays.toString(a));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="值传递-引用传递"><a href="#值传递-引用传递" class="headerlink" title="值传递 引用传递"></a>值传递 引用传递</h2><ol>
+<li>值传递<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.oop;</span><br><span class="line"></span><br><span class="line"><span class="comment">//值传递</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo04</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line">        System.out.println(a);<span class="comment">//1</span></span><br><span class="line">        Demo04.change(a);</span><br><span class="line">        System.out.println(a);<span class="comment">//1</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line">        a =<span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>引用传递<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.oop;</span><br><span class="line"></span><br><span class="line"><span class="comment">//引用传递 ：对象 本质还是值传递</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//对象 内存</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo05</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Person person =  <span class="keyword">new</span> Person();</span><br><span class="line"></span><br><span class="line">        System.out.println(person.name);<span class="comment">//null</span></span><br><span class="line"></span><br><span class="line">        Demo05.change(person);</span><br><span class="line"></span><br><span class="line">        System.out.println(person.name);<span class="comment">//黄西</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">(Person person)</span></span>&#123;</span><br><span class="line">        <span class="comment">//person是一个对象： 指向的 ----》    Person person =  new Person();</span></span><br><span class="line">        person.name = <span class="string">&quot;黄西&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="面向对象-OOP"><a href="#面向对象-OOP" class="headerlink" title="面向对象   OOP"></a>面向对象   OOP</h2></li>
+<li>以类的方式组织数据，以对象的方式封装数据 </li>
+<li>三大特性 封装、继承、多态  </li>
+<li><img src="/child/2021/01/15/Java%E8%AF%AD%E6%B3%95/%E5%A0%86%E6%A0%88.png" alt="堆栈"></li>
+</ol>
+<h2 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.oop.Demo02;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">        <span class="comment">//实例化初始值</span></span><br><span class="line">        <span class="comment">//1. 使用new关键字本质是在调用构造器</span></span><br><span class="line">        <span class="comment">//2. 用来初始化值</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">()</span></span>&#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//有参构造</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.name = name;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// alter + insert 快捷创建构造</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    * 构造器：</span></span><br><span class="line"><span class="comment">    * 1. 和类名相同</span></span><br><span class="line"><span class="comment">    * 2. 没有返回值</span></span><br><span class="line"><span class="comment">    * 常用：</span></span><br><span class="line"><span class="comment">    * 1. 使用new关键字本质是在调用构造器</span></span><br><span class="line"><span class="comment">    * 2. 用来初始化值</span></span><br><span class="line"><span class="comment">    * 注意点：</span></span><br><span class="line"><span class="comment">    * 1. 定义有参构造之后，如果想使用有参构造，定义先显示无参构造</span></span><br><span class="line"><span class="comment">    * */</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="类与对象"><a href="#类与对象" class="headerlink" title="类与对象"></a>类与对象</h2><ol>
+<li>类与对象<br>  类是一个模板：抽象，对象是一个具体的实例</li>
+<li>方法<br>  定义与调用</li>
+<li>对应的引用<br>  引用类型： 基本类型（8）<br>  对象是通过引用来操作的：栈–》堆</li>
+<li>属性： 字段Field 成员变量<br> 默认初始化：<br> 数字： 0 0.0<br> char： u0000<br> boolean: false<br> 引用： null<br> 修饰符 属性类型 属性名 = 属性值;</li>
+<li>对象的创建和使用  <ul>
+<li>必须使用 new 关键字创造对象，构造器   Person person = new Person();  </li>
+<li>对象的属性 HD.name</li>
+<li>对象的方法 HD.sleep();</li>
+</ul>
+</li>
+<li>类<br>静态的属性  属性<br>动态的行为  方法  </li>
+</ol>
+<h2 id="三大特性-封装-继承-多态"><a href="#三大特性-封装-继承-多态" class="headerlink" title="三大特性  封装 继承 多态"></a>三大特性  封装 继承 多态</h2><ol>
+<li>封装 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.oop.Demo04;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 1. 提高程序安全性。保护数据</span></span><br><span class="line"><span class="comment">* 2. 隐藏代码的实现细节</span></span><br><span class="line"><span class="comment">* 2. 统一接口</span></span><br><span class="line"><span class="comment">* 4. 系统可维护性增加了</span></span><br><span class="line"><span class="comment">* */</span></span><br><span class="line"><span class="keyword">import</span> com.oop.Demo04.Student;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Student student = <span class="keyword">new</span> Student();</span><br><span class="line">        student.setId(<span class="number">50</span>);</span><br><span class="line">        student.setName(<span class="string">&quot;lidie&quot;</span>);</span><br><span class="line">        System.out.println(student.getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>继承 extends<br> super注意点：  <pre><code> - super调用父类的构造方法，必须在构造方法的第一个  
+ - super必须只能在出现在子类的方法或者构造器中  
+ - super和this不能同时调用构造方法   </code></pre>
+ 对比this  <pre><code> - 代表的对象不同：     
+ - this：本身调用这个对象  
+ - super： 代表父类对象的引用  </code></pre>
+ 前提：  <pre><code> - this没有继承也能用  
+ - super只能在继承条件才可以使用  </code></pre>
+ 构造方法    <pre><code> this（）;本类的构造  
+ super（）；父类的构造  </code></pre>
+ 重写  <pre><code> - /*</code></pre>
+</li>
+</ol>
+<ul>
+<li>重写： 需要有继承关系，子类重写父类的方法</li>
+<li>1.方法名必须相同</li>
+<li>2.参数列表必须相同</li>
+<li>3.修饰符：范围（权限）可以扩大但不能缩小： public&gt;protect&gt;Default&gt;private</li>
+<li>4.抛出异常：范围可以被缩小，但不能扩大：ClassNotFoundException–&gt;Exception(大)</li>
+<li>重写，子类的方法和父类必须一致，方法体可以不同</li>
+<li></li>
+<li>为什么需要重写：</li>
+<li>1.父类的功能，不一定需要，或者不一定满足！</li>
+<li>alt + Insert     override</li>
+<li>*/</li>
+</ul>
+<ol start="3">
+<li>多态  </li>
+</ol>
+<p>多态注意事项：   </p>
+<pre><code>1. 多态是方法的多态，属性没有多态
+2. 父类和子类，有联系 类型转换异常！ ClassCastException
+3. 存在条件：继承关系，方法需要重写，父类引用指向子类对象！Father f1= new son();
+        注意 发生多态
+        1.static 方法，属于类，他不属于实例化
+        2.final 常量
+        3.private 方法  </code></pre>
+<p>补充 static   </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.oop.Demo07;</span><br><span class="line"></span><br><span class="line"><span class="comment">//静态加载包</span></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> java.lang.Math.random;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;匿名代码块&quot;</span>);<span class="comment">//new 一次加载一次 跟构造方法一样</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;静态代码块&quot;</span>);<span class="comment">//只加载一次</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//两者的作用初始化值</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> age;<span class="comment">//静态变量 多线程</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span> score;<span class="comment">//非静态变量</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">    go();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">go</span><span class="params">()</span></span>&#123;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">         <span class="keyword">new</span> Student().run();</span><br><span class="line">         go();</span><br><span class="line">        System.out.println(random());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.oop.Demo08;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//abstract 抽象类： 类 extends：单继承 （接口可以多继承）</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Action</span> </span>&#123;</span><br><span class="line">    <span class="comment">//约束 类似于虚函数（c++） 有人帮我们实现</span></span><br><span class="line">    <span class="comment">//abstract 抽象方法，只有方法名字，没有方法实现</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//1. 不能new出来这个类，只能靠子类去实现它；约束</span></span><br><span class="line">    <span class="comment">//2. 抽象类中可以写普通的方法</span></span><br><span class="line">    <span class="comment">//3. 抽象方法必须在抽象类中</span></span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.oop.Demo09;</span><br><span class="line"></span><br><span class="line"><span class="comment">//抽象的思维</span></span><br><span class="line"><span class="comment">//定义的关键字 interface  接口都需要实现类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 常量 public static final</span></span><br><span class="line">    <span class="keyword">int</span> age = <span class="number">99</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//接口中的所有定义其实都是抽象的 public abstract</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(String name)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">delete</span><span class="params">(String name)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">updata</span><span class="params">(String name)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">query</span><span class="params">(String name)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>接口作用：  </p>
+<pre><code>1. 约束
+2. 定义一些方法 让不同的人实现
+3. 接口中的所有定义方法其实都是抽象的 public abstract
+4.  常量 public static final  可以直接使用
+       int age = 99;
+5. 接口不能被实例化，接口没有构造方法
+6. implements可以实现多个接口（多继承）
+7. 必须要重写接口的方法</code></pre>
+<h2 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h2><pre><code class="java">
+package com.oop.Demo10;
+
+public class Outer &#123;
+
+    private int id = 10;
+    public void out()&#123;
+        System.out.println(&quot;这是外部类的方法&quot;);
+    &#125;
+   public class Inner&#123;
+        public void in()&#123;
+            System.out.println(&quot;这个是内部类&quot;);
+        &#125;
+        //获得外部类的私有属性
+       public void getID()&#123;
+           System.out.println(id);
+       &#125;
+       //局部内部类
+       public void method()&#123;
+
+            class inner&#123;
+                public void in()&#123;
+
+                &#125;
+            &#125;
+       &#125;
+
+
+    &#125;
+&#125;
+//一个java类中可以有多个class类，但是只能有一个 public class
+
+
+实例化
+
+package com.oop.Demo10;
+
+public class Application &#123;
+    public static void main(String[] args) &#123;
+
+        Outer outer = new Outer();
+        //通过外部类来实例化这个内部类
+        Outer.Inner inner = outer.new Inner();
+        inner.in();
+        inner.getID();
+        //内部类可以拿到外部的私有属性
+    &#125;
+&#125;</code></pre>
+<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2>
       
 
       
