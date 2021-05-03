@@ -160,6 +160,106 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-QT的学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/22/QT%E7%9A%84%E5%AD%A6%E4%B9%A0/">QT的学习</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/22/QT%E7%9A%84%E5%AD%A6%E4%B9%A0/" class="archive-article-date">
+  	<time datetime="2020-10-22T06:31:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##第一天<br>1 创建第一个qt程序<br>1.1点击创建项目后 选择项目路径以及 给项目起名称<br>1.2 名称 不能有中文 不能有空格<br>1.3 路径 不能有中文路径<br>1.4 默认创建有窗口类 mywidget 基类有三种选择 Qwidget Qmainwindow QDialog<br>1.5 main函数<br>1.5.1   QApplication a应用程序对象 有且仅有一个<br>1.5.2   MainWindow w; 实例化窗口对象<br>1.5.3   w.show();调用show函数 显示窗口<br>1.5.4   return a.exec(); 让应用程序对象（a）进入消息循环 让代码阻塞到这行</p>
+<p>2 按钮控件常用的API  中文编码UTF-8  </p>
+<p>  2.1 创建QPushButton * btn2 = new QPushButton<br>  2.2 设置父亲  btn-&gt;setParent(this);<br>  2.3 设置文本  btn-&gt;setText(“第一个按钮”);<br>  2.4 设置位置  move(宽，高);<br>  2.5 重新指定窗口大小 resize<br>  2.6 设置窗口标题 setWindowTitle(“第一个窗口”);<br>  2.7 设置窗口固定的大小 setFixedSize(800,800);<br>  2.8 快捷键及命名方式  </p>
+<p><img src="/child/2020/10/22/QT%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%8F%8A%E5%91%BD%E5%90%8D%E6%96%B9%E5%BC%8F.PNG" alt="快捷键及命名方式"></p>
+<p>3 对象树<br>3.1  当创建的对象在堆区时候，如果指定的父亲是QObject派生下来的类或者QObject子类派生下来的类，可以不用管理释放操作，将对象放到对象树中。<br>3.2  一定程度上简化了内存的机制<br><img src="/child/2020/10/22/QT%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%AF%B9%E8%B1%A1%E6%A0%91.PNG" alt="对象树"></p>
+<p>4 Qt中的坐标系<br>4.1  左上角为0 ， 0点<br>4.2  x以右方向为正方向<br>4.3  y以下方向为正方向  </p>
+<p><img src="/child/2020/10/22/QT%E7%9A%84%E5%AD%A6%E4%B9%A0/Qt%E4%B8%AD%E7%9A%84%E5%9D%90%E6%A0%87.PNG" alt="Qt中的坐标">  </p>
+<p>5 信号和槽  </p>
+<p>5.1  连接函数 connet  （from，what，to，do）<br>5.2  参数  （参数1：信号的发送者，参数2：发送的信号（函数的地址），参数3：信号的接受者，参数4：处理的槽函数（函数地址））<br>5.3  松散耦合<br>5.4  实现 点击按钮 关闭窗口的案例<br>5.5  connect(btn,&amp;QPushButten: :click,this,&amp;QWidget: :close)</p>
+<p><img src="/child/2020/10/22/QT%E7%9A%84%E5%AD%A6%E4%B9%A0/%E4%BF%A1%E5%8F%B7%E5%92%8C%E6%A7%BD.PNG" alt="信号和槽">  </p>
+<p>6 自定义的信号和槽<br>6.1  自定义信号<br>6.1.1  返回值 void<br>6.1.2  需要声明 不需要实现<br>6.1.3  可以有参数（重载）<br>6.2  自定义槽函数<br>6.2.1  返回void<br>6.2.2  需要声明 需要实现<br>6.2.3  可以有参数（重载）<br>6.2.4  写到 public slot（标准）下或者 public 或者 全局函数<br>6.3  触发自定义信号<br>6.3.1  emit 自定义信号<br>6.4  案例下课后，老师触发饿了信号，学生响应信号，请客信号<br><img src="/child/2020/10/22/QT%E7%9A%84%E5%AD%A6%E4%B9%A0/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84%E4%BF%A1%E5%8F%B7%E5%92%8C%E6%A7%BD.PNG" alt="自定义的信号和槽"></p>
+<h3 id="注意有逻辑上的先后顺序-再连接再响应"><a href="#注意有逻辑上的先后顺序-再连接再响应" class="headerlink" title="注意有逻辑上的先后顺序  再连接再响应"></a>注意有逻辑上的先后顺序  再连接再响应</h3><p> 7  当自定义信号和槽出现重载<br>7.1  需要利用函数指针 明确指向函数的地址<br>7.2  void(Teacher:: *teacherSignal) (QString)=&amp;Teacher::hungry;<br>7.3  QString 转成 char *<br>7.3.1  Toutf8() 转为 QByteArray<br>7.3.2  Data()  转为 Char *<br><img src="/child/2020/10/22/QT%E7%9A%84%E5%AD%A6%E4%B9%A0/String%E8%BD%AC%E4%B8%BAchar.PNG" alt="String转为char"><br>7.4  信号可以连接信号<br>7.5  断开信号 disconnect    </p>
+<p>8  拓展<br>8.1.1 信号可以连接信号<br>8.2 一个信号可以连接多个槽函数<br>8.3 多个信号 可以连接 同一个槽函数<br>8.4 信号和槽函数的参数 必须类型意义对应<br>8.5 信号和槽的参数个数 是不是要一致？ 信号的参数个数 可以多于槽函数的参数个数<br>8.6  信号和槽可以断开连接 disconnect    </p>
+<p>9   Qt4版本写法<br>9.1  connect（信号的发送者，发送的信号SIGNAL(信号)，信号的接收者，槽函数SLOT(槽函数)）<br>9.2  优点  参数直观<br>9.3  缺点  编译器不会检测参数类型</p>
+<p>10 lambda 表达式  最常用 [=]  ( ) {  {}}<br>10.1  [] 标识符 匿名函数<br>10.1.1  = 值传递<br>10.1.2  &amp; 引用传递<br>10.2  （）参数<br>10.3  {} 实现体<br>10.4  mutable  修饰 值传递变量， 可以修改拷贝出的数据，改变不了本体<br>10.5  返回值 [ ] ( )-&gt;int{}</p>
+<h2 id="第二天"><a href="#第二天" class="headerlink" title="第二天"></a>第二天</h2><p>1 QMainWindow<br> 1.1 菜单栏 最多有一个<br> 1.1.1 QMenuBar *bar = MenuBar();<br> 1.1.2 setMenuBar(bar); //添加到窗口中<br> 1.1.3 QMenu * fileMenu = bar-&gt;addMenubar(“文件”)；创建菜单<br> 1.1.4 QAction *newAction = fileMenu-&gt;addaction(“新建”) 创建菜单项<br> 1.1.5 fileMenu-&gt;addSeparator(); 添加分割线  </p>
+<p>1.2 工具栏<br>1.2.1 QToolBar *toolbar = new QToolBar(this);<br>1.2.2 addToolBar(默认停靠区域，toolBar);Qt::LeftToolBarArea<br>1.2.3 设置 后期停靠区域 toolBar-&gt;setAllowedAreas(Qt::LeftToolBarArea|Qt::RightToolBarArea);，设置浮动  toolBar-&gt;setFloatable(false);，<br>设置移动 toolBar-&gt;setMovable(false);<br>1.2.4 添加菜单项 或者添加 小控件    </p>
+<p>1.3 状态栏<br>1.3.1  QStatusBar *stBar= statusBar();<br>1.3.2 设置到窗口中  setStatusBar(stBar);<br>1.3.3 放左侧的信息 stBar-&gt;addWidget(label); 放右侧的信息 stBar-&gt;addPermanentWidget(label2);  </p>
+<p>1.4 铆接部件 浮动窗口   可以多个<br>1.4.1 QDockWidget<br>1.4.2 addDockWidget (默认区域停靠区域，浮动窗口指针)<br>1.4.3 设置后期停靠区域   docWidget-&gt;setAllowedAreas(Qt::TopDockWidgetArea|Qt::BottomDockWidgetArea);（上或下）  </p>
+<p>1.5 设置核心部件 只能有一个<br>1.5.1   setCentralWidget(edit);  </p>
+<p>2 资源文件<br>2.1 将图片文件 拷贝到项目位置下<br>2.2 右键项目-》添加新文件-》添加新文件 Qt-》Qt resource File -&gt; 给资源文件取名 res 生成 res.qrc<br>2.3 点击 open in editor 编辑资源<br>2.4 添加前缀 添加文件<br>2.5 使用 “:+前缀名+文件名”<br><img src="/child/2020/10/22/QT%E7%9A%84%E5%AD%A6%E4%B9%A0/%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6.png" alt="资源文件">  </p>
+<p>3 对话框<br>3.1 分类<br>3.1.1 模态对话框   不可以对其他窗口进行操作<br>3.1.1.1   QDialog dlg(this);<br>3.1.1.2  dlg.exec();<br>3.1.2 非模态对话框 可以对其他窗口进行操作<br>3.1.2.1 防止一闪而过  创建在堆区<br>3.1.2.2  QDialog *dlg2=new QDialog(this);   dlg2-&gt;show(); dlg2-&gt;setAttribute(Qt::WA_DeleteOnClose);//55号 属性（防止内存泄露）</p>
+<p>3.2 标准对话框  –消息对话框<br>3.2.1 QMessageBox 静态成员函数 创建对话框<br>3.2.2 错误 信息 提问 警告<br>3.2.3 参数1 父亲 参数2 标题 参数3 显示内容 参数4 按键类型 参数5 默认关联回车<br>3.2.4 返回值 也是按键类型 （StandardButton） 类型 利用返回值 判断 用户的输入    </p>
+<p>3.3 其他标准对话框<br>3.3.1 颜色对话框   QColorDialog::getColor<br>3.3.2 文件对话框   QFileDialog::getopenFileName(父亲，默认路径，过滤文件格式)<br>3.3.3 字体对话框 QFontDialog::getFont  </p>
+<p>4 页面布局<br>4.1  实现登录窗口<br>4.2  利用布局方式给窗口美化<br>4.3  选取widget 进行布局 水平布局 垂直布局 栅格布局<br>4.4  给用户名 密码 登录 退出按钮进行布局<br>4.5  默认窗口和控件 有9间隙 可以调整 layoutleftmargin<br>4.6  利用弹簧进行布局  </p>
+<p>5 控件<br>5.1.1  QPushButton 常用按钮<br>5.1.2  QToolButon 工具按钮  用于显示图片 如图想显示文字，修改风格：toolButtonStyle 凸起风格 autoRaise<br>5.1.3  radioButton 单选按钮，设置默认值   ui-&gt;rBtnMan-&gt;setChecked(true);<br>5.1.4  checkbox 多选按钮，监听状态 2 选中 1半选 0 未选中</p>
+<p>5.2 QListWidget  列表容器<br>5.2.1  QListWidgetitem *item 一行内容<br>5.2.2  ui-&gt;listWidget-&gt;additem(item)<br>5.2.3  设置居中方式   item-&gt;setTextAlignment(Qt::AlignHCenter);<br>5.2.4  可以利用 additems 一次性添加整个诗内容  </p>
+<p>5.3  QTreeWidget 树控件<br>5.3.1   设置头     ui-&gt;treeWidget-&gt;setHeaderLabels(QStringList()&lt;&lt;”英雄”&lt;&lt;”英雄介绍”);<br>5.3.2   创建根节点     QTreeWidgetItem *LiItem = new QTreeWidgetItem(QStringList()&lt;&lt;”力量”);<br>5.3.3   添加根节点 到树控件上  ui-&gt;treeWidget-&gt;addTopLevelItem(LiItem);<br>5.3.4   添加子节点  LiItem-&gt;addChild(L1);  子节点的创建跟前面一样  </p>
+<p>5.4  QTableWidget  表格控件<br>5.4.1 设置列数       ui-&gt;tableWidget-&gt;setColumnCount(3);<br>5.4.2 设置水平表头   ui-&gt;tableWidget-&gt;setHorizontalHeaderLabels(QStringList()&lt;&lt;”姓名”&lt;&lt;”性别”&lt;&lt;”年龄”);<br>5.4.3 设置行数       ui-&gt;tableWidget-&gt;setRowCount(5);<br>5.4.4 设置正文       ui-&gt;tableWidget-&gt;setItem(0,0,new QTableWidgetItem(“亚索”));  </p>
+<p>5.5 其他控件<br>5.5.1  stackedWidget 栈控件    ui-&gt;stackedWidget-&gt;setCurrentIndex(1);<br>5.5.2  下拉框  ui-&gt;comboBox-&gt;addItem(“奔驰”);<br>5.5.3  QLabel 显示图片   ui-&gt;label-&gt;setPixmap(QPixmap(“:/image/timg (5).jpg”));<br>5.5.4  QLabel 显示动图  ui-&gt;lbl_movie-&gt;setMovie(movie)；     //播放  movie-&gt;start();</p>
+<h3 id="第三天"><a href="#第三天" class="headerlink" title="第三天"></a>第三天</h3><p>1 自定义控件封装<br>1.1 添加新文件  Qt-》设计师界面类  （.h  .cpp  .ui）<br>1.2 .ui中设计QspinBox和QSlider 两个控件<br>1.3 Widget中使用自定义控件，拖拽一个Widget 点击提升为，点击添加，点击提升为<br>1.4 实现功能，改变数字，滑动条跟着移动，信号槽监听<br>1.5 提供getnum和setnum对外接口<br>1.6 测试  </p>
+<p>2 Qt中的事件<br>2.1 鼠标事件<br>2.2 鼠标进入事件 enterEvent<br>2.3 鼠标离开事件 leaveEvent<br>2.4 鼠标的按下   mousePressEvent (QMouseEvnet ev)<br>2.5 鼠标的释放   mouseReleaseEvent<br>2.6 鼠标的移动   mouseMoveEvent<br>2.7 ev-&gt;x() x的坐标  ev-&gt;y() y的坐标<br>2.8 ev-&gt;button() 可以判断左右键 ev-&gt;button()==Qt::LeftButton<br>2.9 ev-&gt;buttons() 判断组合按键   判读move时候的左右按键  结和 &amp; 操作符<br>2.10 格式化字符串  QString(“鼠标释放了 X=%1 Y=%2  globlex=%3 globley=%4 “).arg(ev-&gt;x()).arg(ev-&gt;y()).arg(ev-&gt;globalX()).arg(ev-&gt;globalY());<br>2.11 设置鼠标追踪 setMouseTracking(true);</p>
+<p>3  定时器1<br>3.1  利用事件 void timeEvent（QTimeEvent *ev）<br>3.2  启动定时器 startTimer(1000) 毫秒单位<br>3.3  timeEvent 的返回值是定时器的唯一标识 可以和ev-&gt;timerid做比较  </p>
+<p>4 定时器 2<br>4.1  利用定时器类 QTimer<br>4.2  创建定时器对象   QTimer *timer=new QTimer(this);<br>4.3  启动定时器 timer-&gt;start(毫秒)<br>4.4  每隔一定毫秒，发送信号 timeout ，进行监听<br>4.5  暂停 timer-&gt;stop   </p>
+<p>5  事件分发<br>5.1  用途：用于事件的分发<br>5.2  也可以做拦截的操作<br>5.3  bool event(QEvent *e)<br>5.4  返回值是true 代表用户处理这个事件，不向下分发了<br>5.5  e-&gt;type()==鼠标按下<br><img src="/child/2020/10/22/QT%E7%9A%84%E5%AD%A6%E4%B9%A0/%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91.png" alt="事件分发"></p>
+<p>6  事件过滤器<br>6.1  在程序将时间分发到事件分发器之前，可以利用过滤器拦截<br>6.2  步骤  1 给控件安装事件过滤器   2 重写eventFilter函数(obj，e) 参数1 判断控件 参数2 判断按键<br>  <img src="/child/2020/10/22/QT%E7%9A%84%E5%AD%A6%E4%B9%A0/%E4%BA%8B%E4%BB%B6%E8%BF%87%E6%BB%A4%E5%99%A8.png" alt="事件过滤器"></p>
+<p>7  QPainetr 绘图<br>7.1  绘图事件 viod paintevent()<br>7.2  声明一个画家对象 QPainter pianter（this）   this指定绘画设备<br>7.3  画线 画圆 画矩形  画文字<br>7.4  设置画笔 QPen 设置画笔宽度 画笔风格<br>7.5  设置画刷 QBrush 设置画刷 风格  </p>
+<p>8 QPainter 高级设置<br>8.1  抗锯齿 效率低   painter.setRenderHint(QPainter::Antialiasing);<br>8.2  对画家进行移动  pianter.translate(100,0);  保存状态 .save 还原状态 .restore<br>8.3  如果想手动调用绘图事件 利用 update<br>8.4  利用画家画图片  painter.drawPixmap(x,y,QPixmap( 文件位置))</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/22/QT%E7%9A%84%E5%AD%A6%E4%B9%A0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-保存的句子" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

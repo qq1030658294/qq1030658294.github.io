@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com/child">
-  <title>Archives: 2021 | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="关于全国计算机比赛的总结 基于自适应算法下的智能交通灯我只负责硬件部分所以对硬件部分进行一个回顾： 1、 设计思路  　　基于这个自适应算法，要得到模拟和应用，要解决的首要问题是单片机一个联网问题，怎么解决？esp8266模块！这个模块可以实现单片机和服务器的数据交互。服务器通过UDP协议发送数据给到esp8266，再由8266的串口发到单片机上，发的数据类型是ascll码，单片机通过对发送过来的">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/child/archives/2021/index.html">
+<meta property="og:url" content="http://example.com/child/2021/05/02/esp8266+51%E5%8D%95%E7%89%87%E6%9C%BA/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="关于全国计算机比赛的总结 基于自适应算法下的智能交通灯我只负责硬件部分所以对硬件部分进行一个回顾： 1、 设计思路  　　基于这个自适应算法，要得到模拟和应用，要解决的首要问题是单片机一个联网问题，怎么解决？esp8266模块！这个模块可以实现单片机和服务器的数据交互。服务器通过UDP协议发送数据给到esp8266，再由8266的串口发到单片机上，发的数据类型是ascll码，单片机通过对发送过来的">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-05-02T13:53:16.534Z">
+<meta property="article:modified_time" content="2021-05-03T03:30:33.910Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -158,226 +162,132 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-esp8266+51单片机" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="关于全国计算机比赛的总结"><a href="#关于全国计算机比赛的总结" class="headerlink" title="关于全国计算机比赛的总结"></a>关于全国计算机比赛的总结</h2><hr>
+<h3 id="基于自适应算法下的智能交通灯"><a href="#基于自适应算法下的智能交通灯" class="headerlink" title="基于自适应算法下的智能交通灯"></a>基于自适应算法下的智能交通灯</h3><p>我只负责硬件部分所以对硬件部分进行一个回顾：<br> 1、 设计思路 </p>
+<p>　　基于这个自适应算法，要得到模拟和应用，要解决的首要问题是单片机一个联网问题，怎么解决？esp8266模块！这个模块可以实现单片机和服务器的数据交互。服务器通过UDP协议发送数据给到esp8266，再由8266的串口发到单片机上，发的数据类型是ascll码，单片机通过对发送过来的数据进行处理，怎么处理？这个是esp8266发过来的数据格式（+IPD,0,11:43 32 10 10,0, CLOSED）我们只需要用到43（东西方向直行时间）,32（东西方向左转时间）,10（南北方向直行时间）,10（东西方向左转时间），这个是数字是ascll码，需要对其进行处理，1对应的ascll为49，所以要使用1的话就要使其减去48，其他的数字同理，但是我们运用的数字是两位数，所以得到的1得要乘以10,，再加上个数数字，同理其他的三个数也因如此。这样我们就分别可以得到43 32 10 10，这四个数。得到了这个四个数，我们就得把应用到自己通过单片机设计的交通灯上。那么这个交通灯的逻辑和收发数据是怎么实现的呢？</p>
+<p>　　那就是通过C语言，在keil里编程，编程问题首要解决的问题是交通灯逻辑，我们的设计先让东西方向直行先行，东西方向左再行，在还有最后3秒时让其处于一个黄灯的状态，让南北方向处于一个等待，之后再交换。当我们数据传过来了之后，再下一个周期前5s,对数据进行更换。</p>
+<p>　　那么这个数据是怎么拿到的？单片机串口P3.0和P3.1，这个两个串口是单片机用来跟外部模块进行传数据用的，当我们把波特率（9600）和相关的开关设置好了之后，再把esp8266的TX,RX用导线连接好了之后，就可以使用正常的数据收发了。接下来就是数据处理，上面已经说过了，这里不再赘述。接着就是数据应用，我们的交通灯是通过值传递来应用的，所以只需将上文的数据传给对应的数组就能应用上了。</p>
+<p>　　还有最后一个问题，怎么让应用上的数据实现减一功能？定时器，和上面的串口一样，打开相应的寄存器，再赋初值，这样就能实现1s的定时中断，在中断函数里面，使对应的值减一（每一秒时进入中断，使对应的值减一），这样就能实现倒计时功能。</p>
+<p>　　以上就是交通灯设计思路。具体的实现放在相应的文档里面。   </p>
+<hr>
+<p>2、程序实现  </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">     </span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;AT89X52.H&gt;	</span></span></span><br><span class="line"></span><br><span class="line">sfr AUXR=<span class="number">0x8E</span>;</span><br><span class="line">sbit h1=P2^<span class="number">0</span>;sbit h2=P2^<span class="number">1</span>;sbit h3=P2^<span class="number">2</span>;sbit h4=P2^<span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">sbit ew_red=P1^<span class="number">7</span>; sbit ew_green=P1^<span class="number">6</span>;sbit ew_yellow=P1^<span class="number">5</span>;sbit ew_ewgreen=P1^<span class="number">0</span>;</span><br><span class="line">sbit ns_red=P1^<span class="number">4</span>;sbit ns_green=P1^<span class="number">3</span>;sbit ns_yellow=P1^<span class="number">2</span>;sbit ns_nsgreen=P1^<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> j=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">char</span> i=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> cnt=<span class="number">0</span>,sign;</span><br><span class="line"><span class="keyword">char</span> BUF[<span class="number">30</span>];</span><br><span class="line"> <span class="keyword">char</span> Real[<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> code table[]=&#123;<span class="number">0xc0</span>,<span class="number">0xf9</span>,<span class="number">0xa4</span>,<span class="number">0xb0</span>,<span class="number">0x99</span>,<span class="number">0x92</span>,<span class="number">0x82</span>,</span><br><span class="line">                        <span class="number">0xf8</span>,<span class="number">0x80</span>,<span class="number">0x90</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> x, y;</span><br><span class="line">	<span class="keyword">for</span> (x = <span class="number">0</span>; x &lt; k; x++)</span><br><span class="line">		<span class="keyword">for</span> (y = <span class="number">0</span>; y &lt; <span class="number">20</span>; y++);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SendByte</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> dat)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> SBUF = dat;</span><br><span class="line"> <span class="keyword">while</span>(!TI);</span><br><span class="line">      TI = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SendStr</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> *s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="keyword">while</span>(*s!=<span class="string">&#x27;\0&#x27;</span>)<span class="comment">// \0 ?????????,???????????</span></span><br><span class="line">  &#123;</span><br><span class="line">  SendByte(*s);</span><br><span class="line">  s++;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">				</span><br><span class="line">    EA=<span class="number">1</span>;  <span class="comment">//????</span></span><br><span class="line">	   </span><br><span class="line">	PCON &amp;= <span class="number">0x7F</span>;		<span class="comment">//??????</span></span><br><span class="line">	SCON = <span class="number">0x50</span>;		<span class="comment">//8???,?????</span></span><br><span class="line">	AUXR |= <span class="number">0x40</span>;		<span class="comment">//???1???Fosc,?1T</span></span><br><span class="line">	AUXR &amp;= <span class="number">0xFE</span>;		<span class="comment">//??1?????1???????</span></span><br><span class="line">	TMOD &amp;= <span class="number">0x0F</span>;		<span class="comment">//?????1???</span></span><br><span class="line">	TMOD |= <span class="number">0x20</span>;		<span class="comment">//?????1?8???????</span></span><br><span class="line">	TL1 = <span class="number">0xFD</span>;		<span class="comment">//??????</span></span><br><span class="line">	TH1 = <span class="number">0xFD</span>;		<span class="comment">//????????</span></span><br><span class="line">	ET1 = <span class="number">0</span>;		<span class="comment">//?????1??</span></span><br><span class="line">	TR1 = <span class="number">1</span>;		<span class="comment">//?????1</span></span><br><span class="line">	    </span><br><span class="line">    PS=<span class="number">1</span>;              </span><br><span class="line">		TR0=<span class="number">1</span>;</span><br><span class="line">		ET0=<span class="number">1</span>;</span><br><span class="line">      ES=<span class="number">1</span>;</span><br><span class="line">		Real[<span class="number">0</span>]=<span class="number">5</span>;</span><br><span class="line">		Real[<span class="number">1</span>]=<span class="number">5</span>;</span><br><span class="line">		Real[<span class="number">2</span>]=<span class="number">5</span>;</span><br><span class="line">		Real[<span class="number">3</span>]=<span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">first</span><span class="params">(<span class="keyword">int</span> sec,<span class="keyword">int</span> left)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	i=sec+left;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">			<span class="keyword">if</span>(i&lt;=sec+left&amp;&amp;i&gt;left)</span><br><span class="line">			&#123;</span><br><span class="line">				h1=<span class="number">1</span>;h2=<span class="number">1</span>;h3=<span class="number">0</span>;h4=<span class="number">1</span>;</span><br><span class="line">				P0=table[(i-left)/<span class="number">10</span>];</span><br><span class="line">						 ns_red=<span class="number">0</span>; ns_green=<span class="number">1</span>;ns_yellow=<span class="number">0</span>;</span><br><span class="line">				delay(<span class="number">10</span>);</span><br><span class="line">		</span><br><span class="line">				h1=<span class="number">1</span>;h2=<span class="number">1</span>;h3=<span class="number">1</span>;h4=<span class="number">0</span>;</span><br><span class="line">				P0=table[(i-left)%<span class="number">10</span>];</span><br><span class="line">				delay(<span class="number">10</span>);</span><br><span class="line">		</span><br><span class="line">				h1=<span class="number">0</span>;h2=<span class="number">1</span>;h3=<span class="number">1</span>;h4=<span class="number">1</span>;</span><br><span class="line">				P0=table[i/<span class="number">10</span>];</span><br><span class="line">				 ew_red=<span class="number">1</span>; ew_green=<span class="number">0</span>;ew_yellow=<span class="number">0</span>;</span><br><span class="line">				delay(<span class="number">10</span>);</span><br><span class="line">			</span><br><span class="line">				h1=<span class="number">1</span>;h2=<span class="number">0</span>;h3=<span class="number">1</span>;h4=<span class="number">1</span>;</span><br><span class="line">				P0=table[i%<span class="number">10</span>];</span><br><span class="line">				delay(<span class="number">10</span>);</span><br><span class="line">				<span class="keyword">if</span>(i==left)</span><br><span class="line">				&#123;</span><br><span class="line">					i=left;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(i&lt;=left&amp;&amp;i&gt;<span class="number">3</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				</span><br><span class="line">	</span><br><span class="line">				h1=<span class="number">0</span>;h2=<span class="number">1</span>;h3=<span class="number">1</span>;h4=<span class="number">1</span>;</span><br><span class="line">				P0=table[i/<span class="number">10</span>];</span><br><span class="line">				ns_red=<span class="number">0</span>; ns_green=<span class="number">0</span>;ns_yellow=<span class="number">0</span>;ns_nsgreen=<span class="number">1</span>;</span><br><span class="line">				delay(<span class="number">10</span>);</span><br><span class="line">		</span><br><span class="line">				h1=<span class="number">1</span>;h2=<span class="number">0</span>;h3=<span class="number">1</span>;h4=<span class="number">1</span>;</span><br><span class="line">				P0=table[i%<span class="number">10</span>];</span><br><span class="line">				delay(<span class="number">10</span>);</span><br><span class="line">		</span><br><span class="line">				h1=<span class="number">1</span>;h2=<span class="number">1</span>;h3=<span class="number">0</span>;h4=<span class="number">1</span>;</span><br><span class="line">				P0=table[i/<span class="number">10</span>];</span><br><span class="line">				 ew_red=<span class="number">1</span>; ew_green=<span class="number">0</span>;ew_yellow=<span class="number">0</span>;</span><br><span class="line">				delay(<span class="number">10</span>);</span><br><span class="line">			</span><br><span class="line">				h1=<span class="number">1</span>;h2=<span class="number">1</span>;h3=<span class="number">1</span>;h4=<span class="number">0</span>;</span><br><span class="line">				P0=table[i%<span class="number">10</span>];</span><br><span class="line">				delay(<span class="number">10</span>);</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">					</span><br><span class="line">				</span><br><span class="line">						h1=<span class="number">0</span>;h2=<span class="number">1</span>;h3=<span class="number">1</span>;h4=<span class="number">1</span>;</span><br><span class="line">				P0=table[i/<span class="number">10</span>];</span><br><span class="line">				ns_red=<span class="number">0</span>; ns_green=<span class="number">0</span>;ns_yellow=<span class="number">1</span>;ns_nsgreen=<span class="number">0</span>;</span><br><span class="line">				delay(<span class="number">10</span>);</span><br><span class="line">		</span><br><span class="line">				h1=<span class="number">1</span>;h2=<span class="number">0</span>;h3=<span class="number">1</span>;h4=<span class="number">1</span>;</span><br><span class="line">				P0=table[i%<span class="number">10</span>];</span><br><span class="line">				delay(<span class="number">10</span>);</span><br><span class="line">		</span><br><span class="line">				h1=<span class="number">1</span>;h2=<span class="number">1</span>;h3=<span class="number">0</span>;h4=<span class="number">1</span>;</span><br><span class="line">				P0=table[i/<span class="number">10</span>];</span><br><span class="line">				 ew_red=<span class="number">1</span>; ew_green=<span class="number">0</span>;ew_yellow=<span class="number">0</span>;</span><br><span class="line">				delay(<span class="number">10</span>);</span><br><span class="line">			</span><br><span class="line">				h1=<span class="number">1</span>;h2=<span class="number">1</span>;h3=<span class="number">1</span>;h4=<span class="number">0</span>;</span><br><span class="line">				P0=table[i%<span class="number">10</span>];</span><br><span class="line">				delay(<span class="number">10</span>);</span><br><span class="line">		</span><br><span class="line">			&#125;</span><br><span class="line">		</span><br><span class="line">				</span><br><span class="line">		</span><br><span class="line">				<span class="keyword">if</span>(i==<span class="number">0</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">second</span><span class="params">(<span class="keyword">int</span> sec,<span class="keyword">int</span> left)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	i=sec+left;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">			<span class="keyword">if</span>(i&lt;=sec+left&amp;&amp;i&gt;left)</span><br><span class="line">			&#123;</span><br><span class="line">				h1=<span class="number">0</span>;h2=<span class="number">1</span>;h3=<span class="number">1</span>;h4=<span class="number">1</span>;</span><br><span class="line">				P0=table[(i-left)/<span class="number">10</span>];</span><br><span class="line">				 ew_red=<span class="number">0</span>; ew_green=<span class="number">1</span>;ew_yellow=<span class="number">0</span>;</span><br><span class="line">				delay(<span class="number">10</span>);</span><br><span class="line">		</span><br><span class="line">				h1=<span class="number">1</span>;h2=<span class="number">0</span>;h3=<span class="number">1</span>;h4=<span class="number">1</span>;</span><br><span class="line">				P0=table[(i-left)%<span class="number">10</span>];</span><br><span class="line">				delay(<span class="number">10</span>);</span><br><span class="line">		</span><br><span class="line">				h1=<span class="number">1</span>;h2=<span class="number">1</span>;h3=<span class="number">0</span>;h4=<span class="number">1</span>;</span><br><span class="line">				P0=table[i/<span class="number">10</span>];</span><br><span class="line">				ns_red=<span class="number">1</span>; ns_green=<span class="number">0</span>;ns_yellow=<span class="number">0</span>;</span><br><span class="line">				delay(<span class="number">10</span>);</span><br><span class="line">			</span><br><span class="line">				h1=<span class="number">1</span>;h2=<span class="number">1</span>;h3=<span class="number">1</span>;h4=<span class="number">0</span>;</span><br><span class="line">				P0=table[i%<span class="number">10</span>];</span><br><span class="line">				delay(<span class="number">10</span>);</span><br><span class="line">				<span class="keyword">if</span>(i==left)</span><br><span class="line">				&#123;</span><br><span class="line">					i=left;</span><br><span class="line">				&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">if</span>(i&lt;=left &amp;&amp; i&gt;<span class="number">3</span>)</span><br><span class="line">				&#123;</span><br><span class="line">				</span><br><span class="line">				h1=<span class="number">0</span>;h2=<span class="number">1</span>;h3=<span class="number">1</span>;h4=<span class="number">1</span>;</span><br><span class="line">				P0=table[i/<span class="number">10</span>];</span><br><span class="line">					 ew_red=<span class="number">0</span>; ew_green=<span class="number">0</span>;ew_yellow=<span class="number">0</span>;ew_ewgreen=<span class="number">1</span>;</span><br><span class="line">				delay(<span class="number">10</span>);</span><br><span class="line">		</span><br><span class="line">				h1=<span class="number">1</span>;h2=<span class="number">0</span>;h3=<span class="number">1</span>;h4=<span class="number">1</span>;</span><br><span class="line">				P0=table[i%<span class="number">10</span>];</span><br><span class="line">				delay(<span class="number">10</span>);</span><br><span class="line">		</span><br><span class="line">				h1=<span class="number">1</span>;h2=<span class="number">1</span>;h3=<span class="number">0</span>;h4=<span class="number">1</span>;</span><br><span class="line">				P0=table[i/<span class="number">10</span>];</span><br><span class="line">				ns_red=<span class="number">1</span>; ns_green=<span class="number">0</span>;ns_yellow=<span class="number">0</span>;</span><br><span class="line">				delay(<span class="number">10</span>);</span><br><span class="line">			</span><br><span class="line">				h1=<span class="number">1</span>;h2=<span class="number">1</span>;h3=<span class="number">1</span>;h4=<span class="number">0</span>;</span><br><span class="line">				P0=table[i%<span class="number">10</span>];</span><br><span class="line">				delay(<span class="number">10</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">		</span><br><span class="line">				h1=<span class="number">0</span>;h2=<span class="number">1</span>;h3=<span class="number">1</span>;h4=<span class="number">1</span>;</span><br><span class="line">				P0=table[i/<span class="number">10</span>];</span><br><span class="line">				 ew_red=<span class="number">0</span>;ew_green=<span class="number">0</span>;ew_yellow=<span class="number">1</span>;ew_ewgreen=<span class="number">0</span>;</span><br><span class="line">			</span><br><span class="line">				delay(<span class="number">10</span>);</span><br><span class="line">		</span><br><span class="line">				h1=<span class="number">1</span>;h2=<span class="number">0</span>;h3=<span class="number">1</span>;h4=<span class="number">1</span>;</span><br><span class="line">				P0=table[i%<span class="number">10</span>];</span><br><span class="line">				delay(<span class="number">10</span>);</span><br><span class="line">		</span><br><span class="line">				h1=<span class="number">1</span>;h2=<span class="number">1</span>;h3=<span class="number">0</span>;h4=<span class="number">1</span>;</span><br><span class="line">				P0=table[i/<span class="number">10</span>];</span><br><span class="line">				ns_red=<span class="number">1</span>; ns_green=<span class="number">0</span>;ns_yellow=<span class="number">0</span>;</span><br><span class="line">				delay(<span class="number">10</span>);</span><br><span class="line">			</span><br><span class="line">				h1=<span class="number">1</span>;h2=<span class="number">1</span>;h3=<span class="number">1</span>;h4=<span class="number">0</span>;</span><br><span class="line">				P0=table[i%<span class="number">10</span>];</span><br><span class="line">				delay(<span class="number">10</span>);</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line">		</span><br><span class="line">				</span><br><span class="line">		</span><br><span class="line">				<span class="keyword">if</span>(i==<span class="number">0</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	init();</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line">			<span class="comment">//PutString(&quot;AT+CWMODE_CUR=1&quot;);</span></span><br><span class="line">		SendStr(<span class="string">&quot;AT+CWMODE_CUR=1&quot;</span>);</span><br><span class="line">			delay(<span class="number">10000</span>);</span><br><span class="line">		</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">			SendStr(<span class="string">&quot;AT+CWJAP_CUR=\&quot;000\&quot;,\&quot;1qaz2wsx\&quot;&quot;</span>);</span><br><span class="line">			delay(<span class="number">10000</span>);	</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">		</span><br><span class="line">		SendStr(<span class="string">&quot;AT+CIPMUX=1&quot;</span>);</span><br><span class="line">			delay(<span class="number">10000</span>);</span><br><span class="line">		</span><br><span class="line">			SendStr(<span class="string">&quot;AT+CIPSERVER=1,8888&quot;</span>);</span><br><span class="line">			delay(<span class="number">10000</span>);</span><br><span class="line">		</span><br><span class="line">	</span><br><span class="line">		</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">	</span><br><span class="line">		<span class="keyword">if</span>(sign)</span><br><span class="line">	&#123;</span><br><span class="line">		sign=<span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">			Real[<span class="number">0</span>]=BUF[<span class="number">1</span>]*<span class="number">10</span>+BUF[<span class="number">2</span>];</span><br><span class="line">			Real[<span class="number">1</span>]=BUF[<span class="number">4</span>]*<span class="number">10</span>+BUF[<span class="number">5</span>];</span><br><span class="line">			Real[<span class="number">2</span>]=BUF[<span class="number">7</span>]*<span class="number">10</span>+BUF[<span class="number">8</span>];</span><br><span class="line">			Real[<span class="number">3</span>]=BUF[<span class="number">10</span>]*<span class="number">10</span>+BUF[<span class="number">11</span>];			</span><br><span class="line">			</span><br><span class="line">			SendByte(Real[<span class="number">0</span>]);</span><br><span class="line">			SendByte(Real[<span class="number">1</span>]);</span><br><span class="line">			SendByte(Real[<span class="number">2</span>]);</span><br><span class="line">			SendByte(Real[<span class="number">3</span>]);</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//	SendByte(BUF[cnt]);</span></span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		second(Real[<span class="number">0</span>],Real[<span class="number">1</span>]);</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">		delay(<span class="number">500</span>);</span><br><span class="line">	</span><br><span class="line">		first(Real[<span class="number">2</span>],Real[<span class="number">3</span>]);</span><br><span class="line">			</span><br><span class="line"></span><br><span class="line">		delay(<span class="number">500</span>);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">t0</span><span class="params">()</span> interrupt 1</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	</span><br><span class="line"> 		TH0=<span class="number">0x4c</span>;</span><br><span class="line">		TL0=<span class="number">0xd0</span>;<span class="comment">//50ms</span></span><br><span class="line">		j++;</span><br><span class="line">	</span><br><span class="line">		<span class="keyword">if</span>(j==<span class="number">200</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			i--;</span><br><span class="line">			j=<span class="number">0</span>;		</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">serial_serve</span><span class="params">(<span class="keyword">void</span>)</span> interrupt 4      </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(RI==<span class="number">1</span>) </span><br><span class="line">		&#123;</span><br><span class="line">			RI=<span class="number">0</span>; </span><br><span class="line">		BUF[cnt]=SBUF; </span><br><span class="line">			</span><br><span class="line">			<span class="keyword">if</span>(BUF[cnt]==<span class="string">&#x27;:&#x27;</span> || cnt&gt;<span class="number">0</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				</span><br><span class="line">				BUF[cnt]-=<span class="number">48</span>;</span><br><span class="line">					cnt++;</span><br><span class="line">			&#125;</span><br><span class="line">				</span><br><span class="line">			</span><br><span class="line">    <span class="keyword">if</span>(cnt==<span class="number">13</span>) </span><br><span class="line">			&#123;   </span><br><span class="line">					sign=<span class="number">1</span>;</span><br><span class="line">					cnt=<span class="number">0</span>;   </span><br><span class="line">			</span><br><span class="line">			&#125;	</span><br><span class="line">	 </span><br><span class="line">	 </span><br><span class="line">	 </span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>2、遇到的问题<br>（1）首先是波特率的问题  115200 需要用到辅助寄存器 sfr = 0x8e;<br>（2）串口问题 51串口收到的是 ascll码或者hex 所以要用到ascll的数值就得 使其减 48<br>例如 1 对应的ascll码是 49 如果想要用1 就得减去48 才是1的值。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/05/02/esp8266+51%E5%8D%95%E7%89%87%E6%9C%BA/" class="archive-article-date">
-  	<time datetime="2021-05-02T13:53:16.534Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-02</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/child/2021/05/02/esp8266+51%E5%8D%95%E7%89%87%E6%9C%BA/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/25/juc/" class="archive-article-date">
-  	<time datetime="2021-03-25T02:38:40.222Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-25</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/15/Java%E8%AF%AD%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2021-01-15T10:50:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-15</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/15/Java%E8%AF%AD%E6%B3%95/">Java语法</a>
-    </h1>
+  
+    <a href="/2021/03/25/juc/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/13/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2021-01-13T09:05:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/13/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">Java基础语法</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/12/HelloWorld/" class="archive-article-date">
-  	<time datetime="2021-01-12T08:43:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/12/HelloWorld/">HelloWorld</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/12/JDK/" class="archive-article-date">
-  	<time datetime="2021-01-12T08:11:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/12/JDK/">JDK</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/12/Dos%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="archive-article-date">
-  	<time datetime="2021-01-12T07:17:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/12/Dos%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Dos常用命令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/11/Markdown/" class="archive-article-date">
-  	<time datetime="2021-01-11T10:40:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/11/Markdown/">Markdown</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -400,8 +310,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
